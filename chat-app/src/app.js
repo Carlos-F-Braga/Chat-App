@@ -15,16 +15,19 @@ app.use(bp.urlencoded({ extended: true }))
 
 app.use(express.static(publicDirectoryPath))
 
-let message = 'Welcome'
-
 io.on('connection', (socket) => {
     console.log('New websocket connection')
 
-    socket.emit('message', message)
+    socket.emit('message', 'Welcome!')
+    socket.broadcast.emit('message', 'A new user has joined!')
 
     socket.on('sendMessage', (message) => {
         console.log('Mensagem: ' + message)
         io.emit('message', message)
+    })
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left!')
     })
 })
 
