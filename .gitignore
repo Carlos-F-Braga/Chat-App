@@ -1,0 +1,5 @@
+node_modules/
+notes-app/
+weather-app/
+task-app/
+#ignorando node_modules e demais projetos
