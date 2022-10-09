@@ -15,17 +15,16 @@ app.use(bp.urlencoded({ extended: true }))
 
 app.use(express.static(publicDirectoryPath))
 
-let count = 0
+let message = 'Welcome'
 
 io.on('connection', (socket) => {
     console.log('New websocket connection')
 
-    socket.emit('countUpdated', count)
+    socket.emit('message', message)
 
-    socket.on('increment', () => {
-        count++
-        // socket.emit('countUpdated', count)
-        io.emit('countUpdated', count)
+    socket.on('sendMessage', (message) => {
+        console.log('Mensagem: ' + message)
+        io.emit('message', message)
     })
 })
 
