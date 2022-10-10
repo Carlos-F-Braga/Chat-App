@@ -1,17 +1,16 @@
-generateMessage = (text) => {
+const generateMessage = (text) => {
     return {
         text,
         createdAt: new Date().getTime()
     }
 }
 
-generateLocationMessage = (url) => {
+const generateLocationMessage = (url) => {
     return {
         url,
         createdAt: new Date().getTime()
     }
 }
-
 
 module.exports = {
     generateMessage,

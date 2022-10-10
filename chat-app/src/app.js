@@ -4,6 +4,7 @@ const express = require('express')
 const bp = require('body-parser')
 const sockeio = require('socket.io')
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 
