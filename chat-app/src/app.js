@@ -3,6 +3,7 @@ const http = require('http')
 const express = require('express')
 const bp = require('body-parser')
 const sockeio = require('socket.io')
+const { generateMessage, generateLocationMessage } = require('./utils/messages')
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 
@@ -18,23 +19,23 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New websocket connection')
 
-    socket.emit('message', 'Welcome!')
+    socket.emit('message', generateMessage('Welcome!'))
     socket.broadcast.emit('message', 'A new user has joined!')
 
     socket.on('sendMessage', (message, callback) => {
         console.log('Mensagem: ' + message)
-        io.emit('message', message)
+        io.emit('message', generateMessage(message))
         callback();
     })
 
     socket.on('sendLocation', ({latitude, longitude}, callback) => {
         const message = `https://google.com/maps?q=${latitude},${longitude}`
-        io.emit('locationMessage', message)
+        io.emit('locationMessage', generateLocationMessage(message))
         callback();
     })
 
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left!')
+        io.emit('message', generateMessage('A user has left!'))
     })
 })
 

@@ -2,7 +2,7 @@
 <html>
     <head></head>
     <body>
-        <h1> Hey! </h1>
+        <h1> Hey! - CHAT </h1>
 
         <div id="messages"></div>
 
@@ -16,13 +16,13 @@
 
         <script id="message-template" type="text/html"> 
             <div> 
-                <p>{{message}}</p>
+                <p>{{createdAt}} - {{message}}</p>
             </div>
         </script>
 
         <script id="location-template" type="text/html"> 
             <div> 
-                <p><a href="{{url}}" target="_blank">{{message}}</a></p>
+                <p>{{createdAt}} - <a href="{{url}}" target="_blank">{{message}}</a></p>
             </div>
         </script>
 
