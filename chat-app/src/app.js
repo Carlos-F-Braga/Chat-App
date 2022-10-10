@@ -21,14 +21,16 @@ io.on('connection', (socket) => {
     socket.emit('message', 'Welcome!')
     socket.broadcast.emit('message', 'A new user has joined!')
 
-    socket.on('sendMessage', (message) => {
+    socket.on('sendMessage', (message, callback) => {
         console.log('Mensagem: ' + message)
         io.emit('message', message)
+        callback();
     })
 
-    socket.on('sendLocation', ({latitude, longitude}) => {
+    socket.on('sendLocation', ({latitude, longitude}, callback) => {
         const message = `https://google.com/maps?q=${latitude},${longitude}`
         io.emit('message', message)
+        callback();
     })
 
     socket.on('disconnect', () => {
