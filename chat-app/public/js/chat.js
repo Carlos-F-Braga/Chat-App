@@ -32,10 +32,12 @@ socket.on('message', (message) => {
 $messageForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
+    if (!e.target.elements.message.value)
+    return;
+
     $messageFormButton.setAttribute('disabled', 'disabled')
 
     const message = e.target.elements.message.value
-    e.target.elements.last.value = message
     
     let callback = () => {
         $messageFormButton.removeAttribute('disabled')

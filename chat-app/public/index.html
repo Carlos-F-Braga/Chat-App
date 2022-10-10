@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>HEY! Chat APP</title>
+        <link rel="icon" href="./img/favicon.png">
+        <link rel="stylesheet" href="./css/styles.min.css">
+    </head>
     <body>
-        <h1> Hey! - CHAT </h1>
-
-        <div id="messages"></div>
-
-        <form id="message-form">
-            <input name="message" placeholder="Message" autocomplete="off"/>
-            <input name="last" placeholder="" autocomplete="off"/>
-            <button>Send</button>
-        </form>
-
-        <button id="send-location">Send Location</button>
+        <div class="chat">
+            <div class="chat__sidebar">
+                <h1> Hey! - CHAT </h1>
+            </div>
+            <div class="chat__main">
+                <div id="messages" class="chat__messages"></div>
+        
+                <div class="compose">
+                    <form id="message-form">
+                        <input name="message" placeholder="Message" autocomplete="off"/>
+                        <button>Send</button>
+                    </form>
+                </div>
+        
+                <button id="send-location">Send Location</button>
+            </div>
+        </div>
 
         <script id="message-template" type="text/html"> 
-            <div> 
-                <p>{{createdAt}} - {{message}}</p>
+            <div class="message"> 
+                <p>
+                    <span class="message__name">Cara</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <p>{{message}}</p>
             </div>
         </script>
 
         <script id="location-template" type="text/html"> 
             <div> 
-                <p>{{createdAt}} - <a href="{{url}}" target="_blank">{{message}}</a></p>
+                <p>
+                    <span class="message__name">Cara</span>
+                    <span class="message__meta">{{createdAt}}</span>
+                </p>
+                <p><a href="{{url}}" target="_blank">{{message}}</a></p>
             </div>
         </script>
 
