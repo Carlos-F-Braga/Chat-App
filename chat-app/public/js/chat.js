@@ -9,6 +9,15 @@ const $messages = document.querySelector('#messages')
 
 //templates
 const messageTemplate = document.querySelector('#message-template').innerHTML
+const locationTemplate = document.querySelector('#location-template').innerHTML
+
+socket.on('locationMessage', (url) => {
+    const html = Mustache.render(locationTemplate, {
+        message: 'My current location',
+        url
+    })
+    $messages.insertAdjacentHTML('beforeend', html)
+})
 
 socket.on('message', (message) => {
     console.log(message)
