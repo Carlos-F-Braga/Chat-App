@@ -22,6 +22,8 @@ io.on('connection', (socket) => {
 
     socket.on('sendMessage', (message, callback) => {
         console.log('Mensagem: ' + message)
+        const user = getUser(socket.id)
+
         io.to(user.room).emit('message', generateMessage(message))
         callback();
     })
@@ -42,7 +44,9 @@ io.on('connection', (socket) => {
 
     socket.on('sendLocation', ({latitude, longitude}, callback) => {
         const message = `https://google.com/maps?q=${latitude},${longitude}`
-        io.emit('locationMessage', generateLocationMessage(message))
+        const user = getUser(socket.id)
+
+        io.to(user.room).emit('locationMessage', generateLocationMessage(message))
         callback();
     })
 
