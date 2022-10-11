@@ -1,4 +1,7 @@
 /* General Styles */
+::-webkit-scrollbar {
+    display: none;
+}
 
 * {
     margin: 0;
