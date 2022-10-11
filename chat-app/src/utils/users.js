@@ -1,14 +1,16 @@
 const users = []
 
 const addUser = ({ id, username, room }) => {
-    username = username.trim().toLowerCase()
-    room = room.trim().toLowerCase()
-
     if (!username || !room) {
         return {
             error: 'Username and room are required and cannot be 0!'
-        }
+        } 
     }
+
+
+    username = username.trim().toLowerCase()
+    room = room.trim().toLowerCase()
+
 
     const existingUser = users.find((user) => {
         return user.room === room && user.username === username
