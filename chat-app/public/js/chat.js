@@ -18,7 +18,7 @@ socket.on('locationMessage', (message) => {
     const html = Mustache.render(locationTemplate, {
         createdAt: moment(message.createdAt).format('HH:mm'),
         message: 'My current location',
-        url: message.url
+        url: message.url,
     })
     $messages.insertAdjacentHTML('beforeend', html)
 })
@@ -72,4 +72,9 @@ $sendLocationButton .addEventListener('click', () => {
     })
 })
 
-socket.emit('join', { username, room })
+socket.emit('join', { username, room }, (error) => {
+    if (error) {
+        alert(error)
+        location.href = '/'
+    }
+})
